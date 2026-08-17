@@ -7,13 +7,13 @@
 **Compose. Sequence. Arrange. Mix. Automate. Export.**  
 No heavy installation, no payment on Desktop, and no mandatory cloud ownership of your creative work.
 
-[![Desktop](https://img.shields.io/badge/Desktop-available%20without%20payment-111827?style=for-the-badge)](https://dawww-core.com/studio)
+[![Desktop](https://img.shields.io/badge/Desktop-available%20without%20payment-111827?style=for-the-badge)](https://dawww-core-local.com/app)
 [![Android](https://img.shields.io/badge/Android-coming%20%7C%20subscription-111827?style=for-the-badge)](#desktop-now--android-next)
 [![Cross-device](https://img.shields.io/badge/projects-100%25%20cross--device-111827?style=for-the-badge)](#desktop-now--android-next)
 [![Local-first](https://img.shields.io/badge/architecture-local--first-111827?style=for-the-badge)](#local-first-by-design)
 [![Project format](https://img.shields.io/badge/projects-.dw-111827?style=for-the-badge)](#dw--a-project-you-can-keep)
 
-[**Open the Studio**](https://dawww-core.com/studio) · [Guides](https://dawww-core.com/docs) · [Tutorials](https://dawww-core.com/tutorials) · [Roadmap](https://dawww-core.com/roadmap) · [Français](README.fr.md)
+[**Open the Studio**](https://dawww-core-local.com/app) · [Guides](https://dawww-core-local.com/en/docs) · [Tutorials](https://dawww-core-local.com/en/tutorials) · [Roadmap](https://dawww-core-local.com/en/roadmap) · [Français](README.fr.md)
 
 </div>
 
@@ -201,15 +201,16 @@ The product continues to evolve. Interfaces, features, compatibility and platfor
 
 ## Resources
 
-- **Website** — https://dawww-core.com
-- **Desktop Studio** — https://dawww-core.com/studio
-- **Guides** — https://dawww-core.com/docs
-- **Tutorials** — https://dawww-core.com/tutorials
-- **FAQ** — https://dawww-core.com/faq
-- **Status** — https://dawww-core.com/status
-- **Roadmap** — https://dawww-core.com/roadmap
-- **Changelog** — https://dawww-core.com/changelog
-- **Contact** — https://dawww-core.com/contact
+- **Website** — https://dawww-core-local.com/en
+- **Desktop Studio** — https://dawww-core-local.com/app
+- **Product** — https://dawww-core-local.com/en/studio
+- **Guides** — https://dawww-core-local.com/en/docs
+- **Tutorials** — https://dawww-core-local.com/en/tutorials
+- **FAQ** — https://dawww-core-local.com/en/faq
+- **Status** — https://dawww-core-local.com/en/status
+- **Roadmap** — https://dawww-core-local.com/en/roadmap
+- **Changelog** — https://dawww-core-local.com/en/changelog
+- **Contact** — https://dawww-core-local.com/en/contact
 
 ## About this repository
 
@@ -227,6 +228,6 @@ Secrets, production configuration, deployment internals, provider contracts, sec
 
 **DAWWW-CORE — music production on the web, with your project still under your control.**
 
-[Open DAWWW-CORE](https://dawww-core.com/studio)
+[Open DAWWW-CORE](https://dawww-core-local.com/app)
 
 </div>
