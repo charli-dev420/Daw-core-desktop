@@ -1,200 +1,267 @@
 <div align="center">
 
-<img src="asset/logos/dawww_core_favicon_symbol_with_bg_edit_213223361277514.png" alt="Emblème DAWWW-CORE" width="180" />
+<img src="asset/logos/dawww_core_favicon_symbol_with_bg_edit_213223361277514.png" alt="Emblème DAWWW-CORE" width="170" />
 
 # DAWWW-CORE
 
-### Ouvrez-le comme un site. Travaillez comme dans une station. Repartez avec votre projet.
+### DAW natif navigateur · projets local-first · format portable `.dw`
 
-DAWWW-CORE est un **environnement de production musicale Desktop qui fonctionne dans le navigateur** et garde le projet créatif dans une logique local-first.
-
-Le studio Desktop est disponible **maintenant, sans parcours de paiement**. Android arrivera ensuite comme produit **sur abonnement**, avec pour objectif une **compatibilité projet 100 % avec Desktop**.
+DAWWW-CORE est une station audionumérique orientée Desktop construite sur **Web Audio API + AudioWorklet**, avec une couche applicative React/TypeScript, un stockage projet local au navigateur et un contrat de projet portable partagé avec la future application Android.
 
 [![Desktop](https://img.shields.io/badge/Desktop-DISPONIBLE%20MAINTENANT-111827?style=for-the-badge)](https://dawww-core-local.com/app)
 [![Accès Desktop](https://img.shields.io/badge/Desktop-SANS%20PAIEMENT-111827?style=for-the-badge)](https://dawww-core-local.com/app)
-[![Android](https://img.shields.io/badge/Android-%C3%80%20VENIR%20%7C%20ABONNEMENT-111827?style=for-the-badge)](#desktop-maintenant--android-ensuite)
-[![Compatibilité projet](https://img.shields.io/badge/Projet-OBJECTIF%20100%25%20CROSS--DEVICE-111827?style=for-the-badge)](#desktop-maintenant--android-ensuite)
-[![Format projet](https://img.shields.io/badge/Projet-.dw-111827?style=for-the-badge)](#dw-est-au-centre-du-produit)
+[![Instruments](https://img.shields.io/badge/Instruments%20intégrés-51-111827?style=for-the-badge)](#outils-de-production)
+[![Effets](https://img.shields.io/badge/Effets%20intégrés-16-111827?style=for-the-badge)](#outils-de-production)
+[![Android](https://img.shields.io/badge/Android-À%20VENIR%20%7C%20ABONNEMENT-111827?style=for-the-badge)](#modèle-cross-device)
 
-[**Ouvrir DAWWW-CORE Desktop**](https://dawww-core-local.com/app) · [Produit](https://dawww-core-local.com/fr/studio) · [Guides](https://dawww-core-local.com/fr/docs) · [Tutoriels](https://dawww-core-local.com/fr/tutorials) · [English](README.md)
+[**Ouvrir le studio Desktop**](https://dawww-core-local.com/app) · [Produit](https://dawww-core-local.com/fr/studio) · [Documentation](https://dawww-core-local.com/fr/docs) · [Statut](https://dawww-core-local.com/fr/status) · [English](README.md)
 
 </div>
 
 ---
 
 <p align="center">
-  <img src="asset/capture/Screenshot_20260817-033954.png" alt="Lanceur local de projets DAWWW-CORE" width="100%" />
+  <img src="asset/capture/Screenshot_20260817-033954.png" alt="Surface projets Desktop DAWWW-CORE" width="100%" />
 </p>
 
-## Ce qu'est réellement DAWWW-CORE
+## Vue technique
 
-DAWWW-CORE n'est pas un service musical cloud auquel on aurait ajouté un séquenceur, et ce n'est pas non plus un petit sketchpad navigateur uniquement pensé pour fabriquer quelques loops.
+DAWWW-CORE est conçu comme une **station local-first**, pas comme un séquenceur cloud. La couche compte, le site public et les éventuels services en ligne sont séparés du runtime créatif. La session de travail autoritative reste locale et `.dw` constitue la représentation portable du projet utilisée pour l'export/import, la récupération et la compatibilité cross-device.
 
-C'est une application de type DAW construite autour d'un cycle de vie complet du projet local.
+| Couche | Implémentation actuelle | Rôle |
+| --- | --- | --- |
+| **Interface applicative** | TypeScript, React, Vite | Workspace Desktop, vues projet, éditeurs et routage applicatif |
+| **Runtime audio** | Web Audio API | Graphe audio, instruments, mixeur, effets et lecture |
+| **Timing / DSP workers** | AudioWorklet | Traitements sensibles au timing et tâches audio hors boucle de rendu React |
+| **Transport / synchronisation** | Transport partagé + modules de sync | Position de lecture, timing séquenceur/arrangeur et état runtime partagé |
+| **Runtime projet** | Services serializer / restorer | Conversion entre état vivant de l'application et représentation persistante |
+| **Persistance locale** | Base/stockage local navigateur | Stockage de travail principal des projets et états créatifs |
+| **Projet portable** | Pipeline de package `.dw` | Export/import, récupération et transfert indépendant de la plateforme |
+| **Distribution Desktop** | Application web + build orienté PWA | Accès direct navigateur sans imposer un installateur traditionnel |
+| **Distribution Android** | Build Android Capacitor | Future application sur abonnement utilisant le même contrat projet |
+| **Validation** | Vitest, Playwright, scripts de certification/gates | Tests unitaires, intégration, portabilité, playback, modules, stress et release |
 
-Quand on ouvre l'application Desktop, la première surface est le **lanceur de projets** : créer une session, importer un `.dw` existant ou restaurer un projet local. Une fois dans le Studio, ce même projet passe par le séquenceur, le piano roll, l'arrangeur, les instruments, les effets, l'automation et le mixeur jusqu'au rendu ou à l'export.
+La frontière architecturale est volontaire : **React pilote l'application ; Web Audio pilote le graphe audio**. Le rendu UI n'est pas utilisé comme scheduler audio. Les éléments sensibles au timing restent dans la couche audio/runtime, notamment via AudioWorklet et un modèle de transport partagé.
 
-Le point important est que ces surfaces ne sont pas une collection de mini-outils indépendants. Elles travaillent sur la même session et le même modèle de projet.
+## Runtime audio
 
-Une session DAWWW-CORE ressemble concrètement à ceci :
+Le moteur audio s'exécute entièrement sur la machine de l'utilisateur. Aucun service distant de rendu audio n'est nécessaire pour la lecture Desktop normale.
 
-```text
-Créer / importer / restaurer
-          ↓
-Choisir un instrument
-          ↓
-Écrire un pattern dans le séquenceur
-          ↓
-Affiner les notes ou le comportement des steps
-          ↓
-Construire le morceau dans l'arrangeur
-          ↓
-Façonner instruments + effets + automation
-          ↓
-Router et équilibrer dans le mixeur
-          ↓
-Exporter l'audio / les stems
-          ↓
-Conserver ou déplacer le projet en .dw
-```
+À l'exécution, DAWWW-CORE construit un graphe Web Audio à partir de l'état du projet : les instruments alimentent les pistes, les pistes passent par le routage et les traitements, puis le mixeur alimente la chaîne master. Le transport et les modules de synchronisation fournissent la référence temporelle commune au séquenceur, à l'arrangeur et à l'état de lecture.
 
-C'est le produit résumé en une phrase : **un workflow de production dans le navigateur où la session musicale reste un projet portable au lieu de devenir indissociable d'un compte hébergé.**
+AudioWorklet est utilisé lorsque le scheduling du thread principal du navigateur n'est pas suffisant. Le code contient notamment des chemins worklet dédiés à l'horloge/timing ainsi qu'à certains traitements et analyseurs. Cela réduit la dépendance du timing audio au rendu React ou à l'activité DOM, sans supprimer les limites matérielles : la capacité temps réel finale dépend toujours du navigateur, du CPU, de la mémoire et du périphérique audio.
 
-## Un workflow volontairement concret
+Le rendu/export est traité comme un chemin technique distinct de la lecture interactive. Le code contient des services dédiés à l'export/rendu ainsi que des tests de parité permettant de vérifier le résultat indépendamment de l'interface.
 
-Le Browser n'est pas seulement une liste de fichiers. Il expose les instruments disponibles dans le projet et les regroupe par rôle musical. Un instrument peut être amené dans le workflow d'écriture, programmé dans le séquenceur puis édité plus finement sans changer d'application ni de contexte projet.
+## Outils de production
 
-Le séquenceur va aussi plus loin qu'une simple grille on/off. Chaque step peut porter des comportements musicaux comme la **vélocité, la probabilité, la longueur de gate, le ratchet, l'articulation et le décalage de timing**. On peut donc introduire de la variation, casser la rigidité d'un pattern et travailler le détail rythmique avant même de passer au piano roll ou à l'arrangeur.
+La version Desktop expose les principales surfaces d'un DAW sous forme de modules séparés mais partageant le même runtime projet.
 
-Pour les éléments mélodiques, le **piano roll** fournit l'édition au niveau de la note. Pour le sound design, les instruments disposent de leurs propres éditeurs dédiés au lieu de forcer tous les sons dans un panneau générique identique. Electric Piano, drums, synthés, voix orchestrales et autres familles peuvent ainsi présenter des contrôles adaptés au son réellement édité.
+| Surface | Capacités disponibles | Validation présente dans le code |
+| --- | --- | --- |
+| **Transport** | État play/stop, temps projet, timing partagé | Fixtures playback et profils de certification transport |
+| **Séquenceur** | Pistes de pattern et programmation par steps | Fixture module + fixture stress |
+| **Éditeur de step** | Vélocité, chance/probabilité, gate, ratchet, articulation, décalage timing | Couvert par tests séquenceur/runtime |
+| **Piano roll** | Édition MIDI au niveau des notes | Fixture module + fixture stress |
+| **Arrangeur** | Timeline et structure du morceau | Fixture module + fixture stress |
+| **Mixeur** | Canaux, niveaux, routage, sends/traitements, master | Tests unitaires + scénarios routage/PDC/sends |
+| **Automation** | Automation de paramètres et chemins live effets | Scénario dédié automation/effects |
+| **I/O projet** | Sauvegarde locale, restauration, import/export `.dw` | Suite de preuve `.dw` + tests serializer/restorer |
+| **Export audio** | Master et stems ; WAV de base, MP3 lorsque la capability est disponible | Scénarios export, export long et budgets de performance |
 
-Une fois la matière écrite, le projet passe naturellement dans l'**arrangeur** pour la structure du morceau, puis dans le **mixeur** pour le routage, les niveaux, les traitements et le master. L'automation reste intégrée à cette même session, ce qui permet d'écrire les variations d'effets ou de paramètres directement dans le projet plutôt que de les reproduire manuellement à chaque lecture.
+### 51 instruments intégrés
 
-## Plus qu'une coquille vide de DAW
+Le registre interne contient actuellement **50 moteurs de synthèse dédiés plus le sampler**. Ils sont organisés par rôle musical, pas simplement comme un synthé générique décliné en presets :
 
-Un projet DAWWW-CORE neuf dispose déjà d'une palette sonore interne importante. Le registre intégré actuel contient **plus de 50 moteurs d'instruments**, auxquels s'ajoute un sampler, répartis notamment dans les familles suivantes :
+- **12 moteurs orchestraux :** violon, alto, violoncelle, contrebasse, trompette, cor, trombone, tuba, flûte, hautbois, clarinette et basson ;
+- **12 moteurs drums :** kick, snare, hand clap, hi-hat fermé/ouvert, tom bas/mid/aigu, cowbell, rimshot, claves et maracas ;
+- **3 basses :** sub, acid et Reese ;
+- **7 électroniques :** mono lead, poly synth, pluck, arpeggio synth, chiptune, FM keys et noise/transition FX ;
+- **5 pads :** warm, glass, choir, evolving et ambient ;
+- **7 keys/bells :** piano acoustique, piano électrique, clavinet, orgue tonewheel, celesta, music box et tubular bell ;
+- **4 guitares :** nylon, steel-string, clean electric et driven electric ;
+- **1 sampler** pour les instruments à base d'échantillons.
 
-- **Drums** — kick, snare, hand clap, closed/open hi-hat, low/mid/high toms, cowbell, rimshot, claves et maracas.
-- **Basses** — sub bass, acid bass et Reese bass.
-- **Electronic** — mono lead, poly synth, pluck, arpeggio synth, chiptune, FM keys et noise/transition FX.
-- **Pads** — warm, glass, choir, evolving et ambient.
-- **Keys & bells** — acoustic piano, electric piano, clavinet, tonewheel organ, celesta, music box et tubular bell.
-- **Guitares** — nylon, steel-string, clean electric et driven electric.
-- **Orchestre** — moteurs dédiés pour cordes, cuivres et bois : violin, viola, cello, contrabass, trumpet, French horn, trombone, tuba, flute, oboe, clarinet et bassoon.
+Plusieurs familles disposent d'éditeurs dédiés au lieu d'un panneau universel. L'interface peut donc exposer des contrôles liés au modèle de synthèse : par exemple l'Electric Piano possède ses propres contrôles de tone shaping, tremolo et enveloppe, tandis que les percussions utilisent des paramètres adaptés aux transitoires.
 
-Le but n'est pas de prétendre remplacer tous les plugins externes possibles. Le but est qu'**un nouveau projet puisse immédiatement devenir une vraie esquisse musicale ou une production complète sans exiger une collection de plugins séparée simplement pour commencer à faire du son.**
+### 16 effets intégrés
 
-La couche de traitement intégrée comporte actuellement **16 effets** : EQ paramétrique 8 bandes, compressor, convolution reverb, delay synchronisé au tempo, chorus, flanger, phaser, distortion, filter, gate, limiter, saturator, tremolo, vibrato, bitcrusher et utility.
+Le registre de traitements intégré contient actuellement :
 
-## À l'intérieur du Studio actuel
+`EQ paramétrique 8 bandes` · `Compressor` · `Convolution Reverb` · `Delay synchronisé au tempo` · `Chorus` · `Flanger` · `Phaser` · `Distortion` · `Filter` · `Gate` · `Limiter` · `Saturator` · `Tremolo` · `Vibrato` · `Bitcrusher` · `Utility`
+
+Ces processeurs font partie de l'architecture mixeur/automation et ne constituent pas une application de post-traitement séparée.
+
+## Surfaces actuelles du Studio
 
 <table>
   <tr>
     <td width="50%" valign="top">
       <img src="asset/capture/Screenshot_20260817-034101.png" alt="Séquenceur DAWWW-CORE" width="100%" /><br />
-      <sub><b>Séquenceur</b> — pistes, patterns et accès direct au browser d'instruments dans la même surface de production.</sub>
+      <sub><b>Séquenceur</b> — pistes, patterns et routage instrument dans le runtime projet partagé.</sub>
     </td>
     <td width="50%" valign="top">
-      <img src="asset/capture/Screenshot_20260817-034231.png" alt="Éditeur détaillé des steps DAWWW-CORE" width="100%" /><br />
-      <sub><b>Détail du step</b> — vélocité, chance, gate, ratchets, articulation et timing peuvent être édités individuellement.</sub>
+      <img src="asset/capture/Screenshot_20260817-034231.png" alt="Propriétés d'un step DAWWW-CORE" width="100%" /><br />
+      <sub><b>Propriétés par step</b> — vélocité, chance, gate, ratchets, articulation et décalage timing.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
       <img src="asset/capture/Screenshot_20260817-034213.png" alt="Mixeur DAWWW-CORE" width="100%" /><br />
-      <sub><b>Mixeur</b> — canaux, routage, inserts, niveaux et master restent connectés au même projet.</sub>
+      <sub><b>Mixeur</b> — routage des canaux, inserts/traitements, niveaux et étage master.</sub>
     </td>
     <td width="50%" valign="top">
-      <img src="asset/capture/Screenshot_20260817-034141.png" alt="Piano roll et éditeur Hand Clap DAWWW-CORE" width="100%" /><br />
-      <sub><b>Piano roll + éditeur de device</b> — éditer les données musicales tout en gardant l'instrument lui-même directement accessible.</sub>
+      <img src="asset/capture/Screenshot_20260817-034141.png" alt="Piano roll et instrument DAWWW-CORE" width="100%" /><br />
+      <sub><b>Piano roll + device</b> — les notes et l'instrument restent connectés au même projet vivant.</sub>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center" valign="top">
       <img src="asset/capture/Screenshot_20260817-034152.png" alt="Éditeur Electric Piano DAWWW-CORE" width="82%" /><br />
-      <sub><b>Interfaces d'instrument dédiées</b> — l'Electric Piano expose tone shaping, tremolo, enveloppe et contrôles MIDI au lieu d'un éditeur générique unique.</sub>
+      <sub><b>Éditeur d'instrument dédié</b> — contrôles propres au moteur de synthèse au lieu d'un dump générique de paramètres.</sub>
     </td>
   </tr>
 </table>
 
-## `.dw` est au centre du produit
+## Modèle projet `.dw`
 
-Le format `.dw` n'est pas simplement une option d'export située à la fin de l'interface. C'est la représentation portable d'un projet DAWWW-CORE.
+`.dw` constitue la frontière de compatibilité de DAWWW-CORE.
 
-L'application Desktop conserve la session de travail dans une logique local-first, mais un projet doit aussi pouvoir quitter le navigateur proprement. `.dw` fournit ce chemin : **le sauvegarder, le déplacer, l'archiver, le réimporter ou le restaurer sur une autre surface DAWWW-CORE compatible.**
+Le runtime projet vivant est sérialisé dans un package portable via la couche `DWFormat` / `DWPackagePipeline`. Le chemin inverse reconstruit l'état runtime depuis le package. Ce pipeline est volontairement séparé de la couche compte afin qu'une création ne soit pas définie par un enregistrement serveur associé à un utilisateur.
 
-C'est important parce que beaucoup d'applications web font d'une base distante l'unique copie faisant autorité sur un projet. DAWWW-CORE choisit volontairement de ne pas faire de cela le contrat créatif du produit.
+La suite de preuve `.dw` couvre notamment la validation du format, les invariants de portabilité, le fuzzing, la vérification d'export, la sérialisation/restauration runtime, le rendu moteur, la parité audio, le **rendu cross-device** et les contrôles de **production parity**.
 
-Le modèle est plutôt :
+C'est cette distinction qui définit la stratégie Android : cross-device ne signifie pas « synchroniser la même ligne de base de données sur deux clients ». Cela signifie **deux runtimes qui implémentent le même contrat projet**.
 
-```text
-Projet de travail local
-        +
-Projet portable .dw
-        =
-Une session qui n'a pas besoin d'un stockage cloud obligatoire pour exister
-```
+## Modèle cross-device
 
-Des comptes et services en ligne peuvent exister autour de l'application, mais le projet créatif n'est pas conçu pour devenir un objet appartenant techniquement au serveur simplement parce que la station tourne dans un navigateur.
-
-## Desktop maintenant · Android ensuite
-
-### Desktop — disponible maintenant, sans paiement
-
-La version Desktop Web est aujourd'hui la surface principale de DAWWW-CORE. Elle est conçue pour les écrans larges et les contrôles denses nécessaires au séquenceur, au piano roll, à l'arrangeur, aux éditeurs de devices et au mixeur.
-
-Il n'y a **aucun parcours de paiement sur Desktop**. Le Studio peut être ouvert directement depuis le web, et l'architecture orientée PWA permet au navigateur de se rapprocher d'un comportement d'application installée lorsque la plateforme le permet.
-
-[**Lancer le Studio Desktop →**](https://dawww-core-local.com/app)
-
-### Android — à venir sur abonnement, avec le même projet
-
-La version Android n'est pas prévue comme un jouet mobile séparé ni comme une application compagnon en lecture seule. Elle est développée comme le prolongement mobile du même workflow DAWWW-CORE.
-
-Android sera proposé **sur abonnement**, avec comme cible produit une **compatibilité projet Desktop ↔ Android à 100 %**. Le même contrat `.dw` sert de base à cette continuité :
+L'architecture cible est :
 
 ```text
-Projet Desktop
-      ↓
-     .dw
-      ↓
-Projet Android
-      ↓
-     .dw
-      ↓
-Retour sur Desktop
+Runtime Desktop Web
+        │
+        ├── ProjectRuntimeSerializer
+        │
+        ▼
+     projet .dw
+        │
+        ├── ProjectRuntimeRestorer
+        │
+        ▼
+Runtime Android / Capacitor
 ```
 
-Le cross-device ne signifie donc pas qu'un projet doit obligatoirement être envoyé dans un cloud avant de pouvoir changer d'appareil. Le projet portable reste une partie du design.
+Desktop et Android doivent partager le schéma projet, les règles de sérialisation runtime et les mêmes sémantiques projet/audio. C'est pour cette raison que le code contient déjà des tests de rendu `.dw` cross-device et de production parity avant la sortie publique d'Android.
 
-## Pourquoi mettre autant d'un DAW dans un navigateur ?
+**« 100 % cross-device » désigne un objectif de compatibilité projet, pas une affirmation selon laquelle l'APK Android actuel est déjà certifié production sur tous les appareils.** La documentation de release conservée sépare explicitement les preuves format/runtime de la validation native réelle.
 
-Parce que le navigateur apporte à DAWWW-CORE deux choses à la fois : **un accès immédiat** et un runtime applicatif moderne.
+Le modèle public est donc :
 
-La couche audio utilise **Web Audio API** et **AudioWorklet** pour le traitement temps réel, tandis que TypeScript, React et Vite construisent la couche applicative et l'interface autour du moteur. Le stockage local navigateur et le pipeline `.dw` prennent en charge la persistance et la portabilité du projet. Le support PWA rapproche le modèle de distribution d'une application Desktop installée sans imposer un installeur traditionnel comme unique point d'entrée.
+| Surface | État | Accès | Contrat projet |
+| --- | --- | --- | --- |
+| **Desktop Web** | Disponible maintenant | Sans paiement | Surface de référence actuelle `.dw` |
+| **Android** | À venir | Abonnement | Même contrat `.dw` / objectif 100 % compatible |
+| **Sync cloud projet** | Non requis | — | N'est pas l'autorité d'existence du projet |
 
-L'objectif n'est pas de faire « un DAW en JavaScript » comme démonstration technique. L'objectif est d'utiliser le web là où il est réellement utile — distribution, accès, portabilité et mises à jour rapides — sans abandonner les structures attendues d'un outil de production.
+## Persistance, récupération et stockage local
 
-## Ce que DAWWW-CORE ne prétend pas être aujourd'hui
+Les projets Desktop sont principalement persistés dans l'infrastructure de stockage/base locale du navigateur. C'est ce qui permet le comportement local-first, mais cela impose des contraintes différentes d'un DAW entièrement hébergé côté serveur.
 
-La direction produit actuelle est volontairement cadrée. DAWWW-CORE n'est **pas aujourd'hui construit autour** d'une synchronisation cloud obligatoire des projets, de collaboration temps réel, d'iOS ou d'une marketplace de plugins.
+La stack projet contient des mécanismes explicites de sauvegarde et récupération : sérialisation/restauration, état de confiance de sauvegarde, recovery flows et chemin de réparation de la base locale. `.dw` constitue la frontière externe de récupération : une fois exporté, un projet peut exister indépendamment de la base du navigateur.
 
-Ces absences font partie du scope public, ce ne sont pas des fonctions volontairement cachées derrière cette vitrine. La priorité reste la station elle-même : playback, écriture, instruments, effets, automation, mixage, récupération du projet, portabilité `.dw` et export.
+Un navigateur ne fournit **pas de quota de stockage universel et fixe**. L'espace disponible et les règles d'éviction dépendent du navigateur, du profil, de la plateforme et de l'appareil. DAWWW-CORE peut raisonner sur l'état du stockage local, mais ne peut pas garantir le même nombre de gigaoctets sur toutes les machines. Les bibliothèques d'échantillons volumineuses et de nombreux projets locaux restent donc bornés par la politique du navigateur.
+
+Pour cette raison, l'export `.dw` n'est pas seulement un mécanisme de partage : il sert aussi de sortie durable de la persistance locale du navigateur.
+
+## Stratégie de validation
+
+Le dépôt de production utilise plusieurs niveaux de validation plutôt qu'un score global unique.
+
+### Tests unitaires et intégration
+
+**Vitest** couvre le moteur audio, le stockage, le format projet, les instruments/effets, la sérialisation, la restauration et les autres composants runtime.
+
+La commande dédiée `test:dw:proof` agrège les tests critiques de portabilité. Le dernier comptage documenté est de **459 tests** et inclut notamment :
+
+- `DWPackagePipeline` ;
+- `DWPortabilityInvariants` ;
+- `DWFormat` et ses fuzz tests ;
+- `DWExportVerification` ;
+- `DWCrossDeviceRender` ;
+- `DWProductionParity` ;
+- `ProjectRuntimeSerializer` / `ProjectRuntimeRestorer` ;
+- `EngineRenderService` ;
+- `AudioParity.integration` ;
+- playback fixture builders et production synth gates.
+
+### Certification modules Desktop
+
+Le dépôt contient des profils explicites pour :
+
+- le séquenceur, l'arrangeur, le piano roll et le mixeur avec des **fixtures module de 1 minute** ;
+- des **fixtures stress de 1 minute** dédiées à ces modules ;
+- le transport et l'état partagé ;
+- des profils de stabilité **1 heure continuous-work**, **1 heure stress** et **1 heure alternating-sync** ;
+- un complete gate Desktop et un release-candidate gate scoped.
+
+### E2E et performance
+
+**Playwright** est utilisé pour les scénarios E2E/performance navigateur. Le dépôt contient également un système de rapport de performances, un P5 regression gate et des tests spécifiques de budget export/stems.
+
+### Dernière preuve documentée conservée
+
+Le dernier gel de release documenté conservé dans le dépôt privé date du **18 juillet 2026**. À cette date :
+
+- les 9 composants Desktop suivis étaient verts via preuves composées ;
+- le `complete-gate` Desktop visible indiquait **12/12 passés**, `findings=0` et `advisoryFindings=0` ;
+- un long gate Desktop avait atteint **55 minutes de lecture** ;
+- la preuve export/import `.dw` était conservée ;
+- le build web Android et les preflights concernés disposaient de preuves, mais **APK / appareil physique / rendu natif / sortie haut-parleur n'avaient pas été revalidés dans ce gel**.
+
+L'application et l'UI ont ensuite reçu des modifications. Ces chiffres doivent donc être lus comme **preuves techniques conservées**, pas comme certification fraîche du HEAD actuel. Une nouvelle exécution du release gate est nécessaire avant de présenter le build courant comme recertifié.
+
+## Enveloppe de session et limites actuelles
+
+DAWWW-CORE ne publie actuellement **aucun maximum dur certifié** pour le nombre de pistes, de notes, la durée du projet, les voix simultanées ou la taille du fichier projet. Inventer de telles limites serait trompeur puisque le runtime Desktop s'exécute sur la machine de l'utilisateur.
+
+La limite pratique d'une session dépend actuellement de plusieurs budgets :
+
+- **CPU / budget audio temps réel** — davantage de voix synthétiques, effets et routages simultanés augmentent la charge Web Audio ;
+- **mémoire** — audio décodé, samples, buffers de rendu et état projet occupent la mémoire du processus navigateur ;
+- **quota de stockage navigateur** — projets locaux et assets importés utilisent un espace géré par le navigateur/la plateforme ;
+- **charge d'export** — les masters longs ou un grand nombre de stems demandent davantage de temps de rendu et de mémoire temporaire ;
+- **implémentation navigateur / périphérique audio** — latence et capacité temps réel stable ne sont pas identiques selon OS, navigateur et interface audio.
+
+Les profils module/stress de 1 minute et stabilité de 1 heure constituent donc des **enveloppes de validation**, pas des garanties de session infinie. La preuve de lecture longue de 55 minutes montre un chemin Desktop prolongé, mais ne signifie pas qu'un projet arbitrairement lourd fonctionnera indéfiniment sur n'importe quelle machine.
+
+Pour les sessions très chargées en samples, polyphonie ou effets, la communication publique doit rester prudente : la complexité dépend du matériel réel et les projets importants doivent être exportés régulièrement en `.dw`.
+
+### Limites d'export
+
+WAV constitue le chemin d'export audio de base. **MP3 est capability-gated** : sa disponibilité dépend de la plateforme/runtime et le produit ne s'appuie pas sur un encodeur runtime LAME/Shine/FFmpeg/libmp3lame embarqué comme fallback universel.
+
+### Compatibilité navigateurs
+
+Le code est natif navigateur, mais les preuves QA conservées ne certifient pas tous les couples navigateur/OS comme équivalents. AudioWorklet, quota de stockage, support codec/export et latence matérielle peuvent varier. Une matrice publique de compatibilité ne devrait mentionner que les environnements explicitement rejoués et vérifiés.
+
+### État Android
+
+Le chemin Android ainsi que les outils de build/audit existent déjà, mais Android reste une **surface produit à venir**. La parité `.dw` et runtime peut être testée avant la sortie ; la validation sur appareils réels doit rester un sujet distinct.
+
+## Scope volontaire actuel
+
+Le produit actuel n'est pas organisé autour de :
+
+- synchronisation cloud obligatoire des projets ;
+- collaboration temps réel ;
+- iOS ;
+- marketplace de plugins tiers.
+
+Ces fonctions sont hors du scope actif actuel. L'effort d'ingénierie reste centré sur le runtime local, le moteur audio, les surfaces principales de production, la portabilité, la récupération et la compatibilité projet Desktop ↔ Android.
 
 ## Stack publique
 
-`TypeScript` · `React` · `Vite` · `Web Audio API` · `AudioWorklet` · `PWA` · stockage local navigateur
-
-Le code de production contient également des outils dédiés à la QA, à la récupération des projets, à la compatibilité, à l'observabilité et à la release. Cette implémentation reste privée ; ce dépôt présente le produit sans exposer les éléments opérationnels ou sensibles pour la sécurité.
-
-## Modèle plateforme actuel
-
-| Surface | Statut | Modèle d'accès | Modèle projet |
-| --- | --- | --- | --- |
-| **Desktop Web** | **Disponible maintenant** | **Sans paiement** | Local-first + `.dw` portable |
-| **Android** | **À venir** | **Abonnement** | Même contrat `.dw`, objectif 100 % cross-device |
-| **Sync cloud** | Non obligatoire | — | L'existence du projet n'en dépend pas |
-| **Code de production** | Privé | — | Ce dépôt est la vitrine publique |
+`TypeScript` · `React` · `Vite` · `Web Audio API` · `AudioWorklet` · `PWA` · `Capacitor` · stockage local navigateur · `Vitest` · `Playwright`
 
 ## Ressources
 
@@ -210,18 +277,16 @@ Le code de production contient également des outils dédiés à la QA, à la r�
 
 ## À propos de ce dépôt
 
-`Daw-core-desktop` est la **vitrine produit publique de DAWWW-CORE**.
+`Daw-core-desktop` est la présentation publique technique et produit de DAWWW-CORE. L'application de production et le moteur audio sont développés dans un dépôt privé.
 
-L'application de production et le moteur audio sont développés dans un codebase privé. Ce dépôt existe pour rendre le produit compréhensible depuis l'extérieur : ce qu'il fait, comment se déroule une session, ce qui est disponible aujourd'hui et où la plateforme va ensuite.
-
-Il ne s'agit **pas** d'une distribution open source du moteur de production. Les configurations de déploiement, artefacts QA privés, contrats fournisseurs, mécanismes de sécurité et autres détails internes sensibles restent hors de ce dépôt.
+Ce dépôt expose volontairement l'architecture produit, les surfaces disponibles, le modèle de validation, la stratégie plateforme et les limites connues sans publier les secrets, la configuration de déploiement, les artifacts QA privés ni les détails sensibles de sécurité.
 
 ---
 
 <div align="center">
 
-### Créez localement. Travaillez comme dans un DAW. Gardez le projet.
+**DAWWW-CORE Desktop — disponible maintenant, sans paiement.**
 
-[**Ouvrir DAWWW-CORE Desktop**](https://dawww-core-local.com/app)
+[**Ouvrir le Studio Desktop**](https://dawww-core-local.com/app)
 
 </div>
