@@ -1,11 +1,14 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Open DAWWW-CORE Desktop
-    url: https://dawww-core-local.com/app
-    about: Launch the current Desktop studio.
   - name: DAWWW-CORE documentation
     url: https://dawww-core-local.com/en/docs
-    about: Check the public documentation before reporting a product issue.
-  - name: Product overview
-    url: https://dawww-core-local.com/en/studio
-    about: Read the current product and platform overview.
+    about: Read the practical guides before opening a product issue.
+  - name: DAWWW-CORE FAQ
+    url: https://dawww-core-local.com/en/faq
+    about: Check common answers about projects, access, platforms and local-first behavior.
+  - name: Support guide
+    url: https://github.com/charli-dev420/Daw-core-desktop/blob/main/SUPPORT.md
+    about: See what information makes a bug, feature or cross-device report actionable.
+  - name: Security policy
+    url: https://github.com/charli-dev420/Daw-core-desktop/blob/main/SECURITY.md
+    about: Do not disclose vulnerabilities publicly; use the private reporting instructions here.
