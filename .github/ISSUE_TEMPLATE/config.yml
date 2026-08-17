@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Open DAWWW-CORE Desktop
+    url: https://dawww-core-local.com/app
+    about: Launch the current Desktop studio.
+  - name: DAWWW-CORE documentation
+    url: https://dawww-core-local.com/en/docs
+    about: Check the public documentation before reporting a product issue.
+  - name: Product overview
+    url: https://dawww-core-local.com/en/studio
+    about: Read the current product and platform overview.
