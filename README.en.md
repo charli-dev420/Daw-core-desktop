@@ -6,7 +6,9 @@
 
 Compose, sequence, arrange, mix and export directly from your desktop browser — without making the cloud mandatory for your creative workflow.
 
-[![Desktop Web](https://img.shields.io/badge/platform-desktop%20web-111827?style=flat-square)](https://dawww-core.com/studio)
+[![Desktop Web](https://img.shields.io/badge/Desktop-available%20without%20payment-111827?style=flat-square)](https://dawww-core.com/studio)
+[![Android](https://img.shields.io/badge/Android-coming%20%7C%20subscription-111827?style=flat-square)](#desktop-now--android-coming)
+[![Cross-device](https://img.shields.io/badge/projects-100%25%20cross--device-111827?style=flat-square)](#desktop-now--android-coming)
 [![Local-first](https://img.shields.io/badge/design-local--first-111827?style=flat-square)](https://dawww-core.com)
 [![Project format](https://img.shields.io/badge/projects-.dw-111827?style=flat-square)](https://dawww-core.com/docs)
 [![Source](https://img.shields.io/badge/source-private-111827?style=flat-square)](#about-this-repository)
@@ -21,7 +23,18 @@ Compose, sequence, arrange, mix and export directly from your desktop browser �
 
 DAWWW-CORE is a digital audio workstation designed for the desktop browser. The project aims to combine the immediate access of a web application with a structured music-production workflow: capture an idea, build patterns, arrange a timeline, shape sounds, mix, and export without a heavy installation process.
 
-The product follows a **local-first** approach: projects and creative content remain primarily under the user's control. Accounts and online services act as an access layer; they are not the primary source of your creations.
+The product follows a **local-first** approach: projects and creative content remain primarily under the user's control. Optional online services are not the primary source of your creations.
+
+## Desktop now · Android coming
+
+| Platform | Availability | Model | Project continuity |
+| --- | --- | --- | --- |
+| **Desktop Web** | Available | **No payment on the desktop version** | Local and portable `.dw` projects. |
+| **Android** | **Coming** | **Subscription** | **100% cross-device with Desktop** through the same `.dw` project contract. |
+
+The Android version is designed as the mobile continuation of the studio: a project should move from Desktop to Android and back to Desktop without introducing a separate format or workflow.
+
+The stated goal is a **100% cross-device** experience: same project, same `.dw` format, continuous work across both platforms.
 
 ## The studio
 
@@ -53,7 +66,7 @@ Mixer
 Audio export / .dw project save
 ```
 
-The `.dw` format is a core part of the product: it provides a portable way to preserve and move a project without requiring mandatory cloud synchronization.
+The `.dw` format is a core part of the product: it provides a portable way to preserve and move a project without requiring mandatory cloud synchronization, and forms the basis of cross-device continuity between Desktop and Android.
 
 ## Built for desktop web
 
@@ -67,7 +80,7 @@ Design principles:
 - a **desktop-focused interface** designed for dense music-production work;
 - **modern web audio** built around Web Audio and AudioWorklet;
 - **progressive web app** capabilities to bring the web experience closer to an installed application;
-- **project compatibility** across DAWWW-CORE surfaces when they share the same project contract.
+- **Desktop ↔ Android cross-device continuity** built around the same `.dw` project contract.
 
 ## Product stack
 
@@ -75,24 +88,26 @@ The desktop surface is primarily built around:
 
 `TypeScript` · `React` · `Vite` · `Web Audio API` · `AudioWorklet` · `PWA` · browser-local storage
 
-The application also relies on specialized services for functions outside locally stored creative content, including account access, billing, observability and web distribution.
+The application also relies on specialized services for functions outside locally stored creative content, including account access, observability and web distribution. **The desktop version no longer includes a payment flow.**
 
 ## Privacy by design
 
 The product principle is straightforward: **a music project should not need to live in a cloud in order to exist**.
 
-DAWWW-CORE therefore prioritizes local storage for creative content and the ability to export a portable project. Account and payment services remain separate from the musical content used as the primary project source.
+DAWWW-CORE therefore prioritizes local storage for creative content and the ability to export a portable project. Account services remain separate from the musical content used as the primary project source.
 
 ## Project status
 
-DAWWW-CORE is actively developed. Priority is given to audio-engine reliability, project portability, the desktop workflow and validation of critical paths before purely visual changes.
+**DAWWW-CORE Desktop** is actively developed and available without payment on the desktop version. Priority is given to audio-engine reliability, project portability, the desktop workflow and validation of critical paths.
 
-Features, platform limitations and access conditions may evolve during development. The product's public pages remain the reference for user-visible status.
+**DAWWW-CORE Android** is announced as an upcoming platform, offered by subscription and designed for 100% cross-device continuity with Desktop projects.
+
+Features and platform limitations may evolve during development. The product's public pages remain the reference for user-visible status.
 
 ## Links
 
 - **Website** — https://dawww-core.com
-- **Studio** — https://dawww-core.com/studio
+- **Desktop Studio** — https://dawww-core.com/studio
 - **Guides** — https://dawww-core.com/docs
 - **Tutorials** — https://dawww-core.com/tutorials
 - **FAQ** — https://dawww-core.com/faq
@@ -103,7 +118,7 @@ Features, platform limitations and access conditions may evolve during developme
 
 ## About this repository
 
-This repository is the **public presentation for DAWWW-CORE Desktop**.
+This repository is the **public presentation for DAWWW-CORE Desktop**, along with the upcoming cross-device Android continuity.
 
 It exists to present the product, its positioning, its capabilities and its public links. **Production source code is not distributed through this repository**, and the content here should not be interpreted as an open-source release of the engine or application.
 
