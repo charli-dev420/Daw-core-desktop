@@ -1,0 +1,114 @@
+name: Bug report
+description: Report reproducible unexpected behavior in DAWWW-CORE Desktop.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for visible product bugs. The production source code is private; describe what you can reproduce in the public product.
+
+        For suspected vulnerabilities, do not use this form. Follow SECURITY.md instead.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Affected area
+      options:
+        - Project launcher / project management
+        - Sequencer / step editor
+        - Piano roll / MIDI
+        - Arranger
+        - Mixer / routing
+        - Automation
+        - Instrument / synth
+        - Effect / processing
+        - Sample / audio import
+        - .dw save / import / export
+        - Audio export / stems
+        - PWA / offline behavior
+        - Performance / long session
+        - Account / access
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Give the shortest sequence that reproduces the problem.
+      placeholder: |
+        1. Open...
+        2. Create...
+        3. Click...
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What visibly happens?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen instead?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Product surface
+      options:
+        - Desktop Web
+        - Desktop PWA
+        - Both Desktop Web and PWA
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: "Chrome 151 / Edge 151 / ..."
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: Operating system / device
+      placeholder: "Windows 11 / Linux / macOS / device model..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: project
+    attributes:
+      label: Project context
+      description: Approximate complexity only. Do not upload private project material unless you intend it to be public.
+      placeholder: "Tracks, instruments, effects, samples, project duration, whether a new empty project also reproduces it..."
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots, console excerpt or additional context
+      description: Remove secrets, tokens, personal information and private/licensed audio.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked the documentation/FAQ and can still reproduce this issue.
+          required: true
+        - label: I have not included credentials, tokens or private user/project data.
+          required: true
+        - label: This is a product bug, not a vulnerability disclosure.
+          required: true
