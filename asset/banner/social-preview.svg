@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640">
+  <defs>
+    <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#050709" stop-opacity="1"/>
+      <stop offset="0.68" stop-color="#050709" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#050709" stop-opacity="0.12"/>
+    </linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.5"/></filter>
+  </defs>
+  <rect width="1280" height="640" fill="#050709"/>
+  <image href="https://raw.githubusercontent.com/charli-dev420/Daw-core-desktop/main/asset/capture/Screenshot_20260817-034231.png" x="610" y="0" width="670" height="640" preserveAspectRatio="xMidYMid slice" opacity="0.52"/>
+  <rect x="560" width="430" height="640" fill="url(#fade)"/>
+  <rect x="48" y="56" width="8" height="520" fill="#ff581b"/>
+  <image href="https://raw.githubusercontent.com/charli-dev420/Daw-core-desktop/main/asset/logos/dawww_core_favicon_symbol_with_bg_edit_213223361277514.png" x="80" y="52" width="142" height="142" preserveAspectRatio="xMidYMid meet"/>
+  <text x="245" y="108" fill="#f4f5f6" font-family="Arial, Helvetica, sans-serif" font-size="48" font-weight="800">DAWWW-CORE</text>
+  <text x="245" y="142" fill="#ff6223" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">MUSIC PRODUCTION</text>
+  <text x="84" y="258" fill="#f4f5f6" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800">LOCAL-FIRST BROWSER DAW</text>
+  <text x="84" y="307" fill="#ff6223" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800">DESKTOP ↔ ANDROID</text>
+  <text x="84" y="358" fill="#a6abb0" font-family="Arial, Helvetica, sans-serif" font-size="22">One .dw project. No conversion.</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="84" y="401" width="148" height="72" rx="9" fill="#0d1114" stroke="#484d52"/>
+    <text x="98" y="432" fill="#ff6223" font-size="26" font-weight="800">51</text><text x="98" y="458" fill="#f4f5f6" font-size="12" font-weight="700">INSTRUMENTS</text>
+    <rect x="246" y="401" width="148" height="72" rx="9" fill="#0d1114" stroke="#484d52"/>
+    <text x="260" y="432" fill="#ff6223" font-size="26" font-weight="800">16</text><text x="260" y="458" fill="#f4f5f6" font-size="12" font-weight="700">EFFECTS</text>
+    <rect x="408" y="401" width="148" height="72" rx="9" fill="#0d1114" stroke="#484d52"/>
+    <text x="422" y="432" fill="#42d3eb" font-size="26" font-weight="800">100%</text><text x="422" y="458" fill="#f4f5f6" font-size="12" font-weight="700">CROSS-DEVICE</text>
+  </g>
+  <text x="84" y="529" fill="#f4f5f6" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">DESKTOP AVAILABLE NOW · NO PAYMENT</text>
+  <text x="84" y="561" fill="#a6abb0" font-family="Arial, Helvetica, sans-serif" font-size="17">Android subscription version coming next</text>
+  <g filter="url(#shadow)">
+    <image href="https://raw.githubusercontent.com/charli-dev420/Daw-core-desktop/main/asset/capture/Screenshot_20260817-034213.png" x="730" y="315" width="390" height="244" preserveAspectRatio="xMidYMid slice"/>
+    <image href="https://raw.githubusercontent.com/charli-dev420/Daw-core-desktop/main/asset/capture/Screenshot_20260817-034152.png" x="1000" y="360" width="245" height="196" preserveAspectRatio="xMidYMid slice"/>
+  </g>
+</svg>
