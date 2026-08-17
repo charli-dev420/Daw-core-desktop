@@ -1,0 +1,88 @@
+name: Cross-device feedback
+description: Report Desktop ↔ Android .dw portability behavior or cross-device workflow feedback.
+title: "[Cross-device] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        DAWWW-CORE uses one portable `.dw` project model across Desktop and Android rather than a reduced mobile project format. Use this form to report what happens when a project moves between devices.
+
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Transfer direction
+      options:
+        - Desktop Web → Android
+        - Desktop PWA → Android
+        - Android → Desktop Web
+        - Android → Desktop PWA
+        - Desktop → Desktop
+        - Other cross-device path
+    validations:
+      required: true
+
+  - type: textarea
+    id: transfer
+    attributes:
+      label: How was the .dw transferred?
+      placeholder: "Downloaded, shared, copied, local file transfer..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: project
+    attributes:
+      label: Project composition
+      description: Approximate complexity only; do not upload private project material unless you intend it to be public.
+      placeholder: "Tracks, instruments, effects, samples, automation, routing, arrangement length..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: preserved
+    attributes:
+      label: What was preserved after opening the project?
+      options:
+        - label: Tracks / arrangement
+        - label: Notes / MIDI / patterns
+        - label: Instruments and their settings
+        - label: Effects and their settings
+        - label: Automation
+        - label: Routing / mixer state
+        - label: Samples / sampler data
+
+  - type: textarea
+    id: difference
+    attributes:
+      label: What differed or failed?
+      description: If everything matched, say so. Otherwise describe the smallest visible difference.
+    validations:
+      required: true
+
+  - type: input
+    id: desktop
+    attributes:
+      label: Desktop browser / OS
+      placeholder: "Chrome 151 / Windows 11..."
+
+  - type: input
+    id: android
+    attributes:
+      label: Android device / version
+      placeholder: "Device model / Android version..."
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      description: Does the same transfer produce the same result every time? Does a simpler project behave differently?
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I tested an actual `.dw` transfer rather than describing a hypothetical compatibility request.
+          required: true
+        - label: I have not included credentials, tokens or private user/project data.
+          required: true
