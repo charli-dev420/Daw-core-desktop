@@ -1,0 +1,80 @@
+name: Feature request
+description: Propose a product capability or workflow improvement for DAWWW-CORE.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Describe the workflow problem first, then the result you want. The production source code is private, so requests are evaluated as product needs rather than implementation patches.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Sequencer / step editor
+        - Piano roll / MIDI
+        - Arranger
+        - Mixer / routing
+        - Automation
+        - Project / .dw workflow
+        - Import / export
+        - PWA / offline
+        - Account / access
+        - Performance / workflow
+        - Documentation / learning
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Current workflow or limitation
+      description: What are you trying to do today, and where is the friction?
+    validations:
+      required: true
+
+  - type: textarea
+    id: result
+    attributes:
+      label: Desired result
+      description: Describe the behavior or outcome that would solve the problem.
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Real production use case
+      description: Give a concrete session example where this would help.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How often would you use it?
+      options:
+        - Every session
+        - Often
+        - Occasionally
+        - Rare / specialized workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Current workaround or alternative
+      description: Optional. How do you handle this today?
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I described the user-facing need rather than requesting private source-code access.
+          required: true
+        - label: I checked that the same request is not already covered by the documentation or an existing Issue.
+          required: true
