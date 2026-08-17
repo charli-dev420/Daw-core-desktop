@@ -1,0 +1,71 @@
+name: Instrument / FX request
+description: Request a built-in instrument, synthesis role, effect or processing capability.
+title: "[Instrument/FX] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form for sound-generation and processing requests. Describe the musical role and controls that matter rather than asking DAWWW-CORE to copy a proprietary plugin.
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: Request type
+      options:
+        - New instrument / synth
+        - New drum / percussion instrument
+        - New sampler capability
+        - New audio effect
+        - Improvement to an existing instrument
+        - Improvement to an existing effect
+    validations:
+      required: true
+
+  - type: input
+    id: role
+    attributes:
+      label: Musical / processing role
+      placeholder: "Example: mono acid bass, transient shaper, tape-style saturation..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Typical use case
+      description: Where would you use this in a real project?
+    validations:
+      required: true
+
+  - type: textarea
+    id: controls
+    attributes:
+      label: Important controls
+      description: Which user-facing parameters are essential for this request to be useful?
+      placeholder: "Example: cutoff, resonance, envelope amount, drive..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: fit
+    attributes:
+      label: Why it belongs in the built-in DAWWW-CORE palette
+      description: Explain what is missing from the current 51 instruments / 16 effects.
+    validations:
+      required: true
+
+  - type: textarea
+    id: references
+    attributes:
+      label: Sound references or examples
+      description: Optional. Link to public examples or describe the sound. Do not attach copyrighted material you cannot share.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: This request describes a musical or processing need, not a request to clone proprietary source code.
+          required: true
+        - label: I checked the current Instruments and Effects pages first.
+          required: true
