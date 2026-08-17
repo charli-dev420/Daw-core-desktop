@@ -1,0 +1,86 @@
+name: DAWWW-CORE feedback
+description: Report a Desktop issue or suggest improvements to modules, instruments, effects or cross-device usage.
+title: "[Feedback] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to help improve DAWWW-CORE.
+
+        This repository is the public product showcase; the production source code is private. Please describe the **visible product behavior** rather than requesting internal implementation details.
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feedback category
+      description: What is this mainly about?
+      options:
+        - Desktop bug / unexpected behavior
+        - Sequencer / step editor
+        - Piano roll
+        - Arranger
+        - Mixer / routing
+        - Automation
+        - Instrument / synth
+        - Effect / processing
+        - Project save / .dw portability
+        - Desktop ↔ Android cross-device
+        - Audio export / stems
+        - Performance / session limits
+        - Documentation / presentation
+        - Other product feedback
+    validations:
+      required: true
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened or what would you improve?
+      description: Keep it concrete. For bugs, explain the visible result. For suggestions, explain the use case.
+      placeholder: "Example: In the sequencer, I would like... / When I open..., I see..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior or desired result
+      placeholder: "What should happen instead?"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Desktop Web
+        - Desktop PWA
+        - Android / cross-device planning
+        - Not platform-specific
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / device (if relevant)
+      description: Optional, but useful for audio, storage or performance issues.
+      placeholder: "Chrome 140 / Windows 11 / Android device..."
+
+  - type: textarea
+    id: project_context
+    attributes:
+      label: Project context (if relevant)
+      description: Do not attach private or sensitive material. Describe approximate project complexity instead.
+      placeholder: "Approx. track count, instruments, effects, samples, project duration..."
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked that this feedback concerns the public DAWWW-CORE product rather than private source-code access.
+          required: true
+        - label: I have not included passwords, tokens, private project content or other sensitive information.
+          required: true
