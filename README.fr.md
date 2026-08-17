@@ -4,229 +4,203 @@
 
 # DAWWW-CORE
 
-### Une station de production musicale local-first construite pour le navigateur.
+### Ouvrez-le comme un site. Travaillez comme dans une station. Repartez avec votre projet.
 
-**Composez. Séquencez. Arrangez. Mixez. Automatisez. Exportez.**  
-Sans installation lourde. Sans paiement sur Desktop. Sans rendre le cloud obligatoire pour posséder vos créations.
+DAWWW-CORE est un **environnement de production musicale Desktop qui fonctionne dans le navigateur** et garde le projet créatif dans une logique local-first.
+
+Le studio Desktop est disponible **maintenant, sans parcours de paiement**. Android arrivera ensuite comme produit **sur abonnement**, avec pour objectif une **compatibilité projet 100 % avec Desktop**.
 
 [![Desktop](https://img.shields.io/badge/Desktop-DISPONIBLE%20MAINTENANT-111827?style=for-the-badge)](https://dawww-core-local.com/app)
-[![Prix](https://img.shields.io/badge/Desktop-SANS%20PAIEMENT-111827?style=for-the-badge)](https://dawww-core-local.com/app)
-[![Android](https://img.shields.io/badge/Android-%C3%80%20VENIR%20%7C%20ABONNEMENT-111827?style=for-the-badge)](#desktop-aujourdhui--android-ensuite)
-[![Cross-device](https://img.shields.io/badge/Projets-100%25%20CROSS--DEVICE-111827?style=for-the-badge)](#desktop-aujourdhui--android-ensuite)
-[![Format projet](https://img.shields.io/badge/Projets-.dw-111827?style=for-the-badge)](#dw--votre-projet-est-un-fichier)
+[![Accès Desktop](https://img.shields.io/badge/Desktop-SANS%20PAIEMENT-111827?style=for-the-badge)](https://dawww-core-local.com/app)
+[![Android](https://img.shields.io/badge/Android-%C3%80%20VENIR%20%7C%20ABONNEMENT-111827?style=for-the-badge)](#desktop-maintenant--android-ensuite)
+[![Compatibilité projet](https://img.shields.io/badge/Projet-OBJECTIF%20100%25%20CROSS--DEVICE-111827?style=for-the-badge)](#desktop-maintenant--android-ensuite)
+[![Format projet](https://img.shields.io/badge/Projet-.dw-111827?style=for-the-badge)](#dw-est-au-centre-du-produit)
 
-[**Ouvrir le studio**](https://dawww-core-local.com/app) · [Produit](https://dawww-core-local.com/fr/studio) · [Guides](https://dawww-core-local.com/fr/docs) · [Tutoriels](https://dawww-core-local.com/fr/tutorials) · [English](README.md)
+[**Ouvrir DAWWW-CORE Desktop**](https://dawww-core-local.com/app) · [Produit](https://dawww-core-local.com/fr/studio) · [Guides](https://dawww-core-local.com/fr/docs) · [Tutoriels](https://dawww-core-local.com/fr/tutorials) · [English](README.md)
 
 </div>
 
 ---
 
 <p align="center">
-  <img src="asset/capture/Screenshot_20260817-033954.png" alt="Lanceur de projets local DAWWW-CORE" width="100%" />
+  <img src="asset/capture/Screenshot_20260817-033954.png" alt="Lanceur local de projets DAWWW-CORE" width="100%" />
 </p>
 
-## Le navigateur peut être un vrai studio
+## Ce qu'est réellement DAWWW-CORE
 
-DAWWW-CORE part d'une idée simple : **ouvrir un navigateur ne devrait pas signifier accepter un workflow musical réduit**.
+DAWWW-CORE n'est pas un service musical cloud auquel on aurait ajouté un séquenceur, et ce n'est pas non plus un petit sketchpad navigateur uniquement pensé pour fabriquer quelques loops.
 
-Le produit vise une vraie expérience de station audionumérique desktop, organisée autour des étapes qui comptent réellement pour transformer une idée en morceau : gestion de projet, séquençage, édition de notes, arrangement, sound design, effets, automation, mixage et export.
+C'est une application de type DAW construite autour d'un cycle de vie complet du projet local.
 
-La version Desktop est celle que l'on peut utiliser **aujourd'hui**, directement depuis le web et **sans paiement**. La session reste centrée sur un projet portable `.dw`, plutôt que sur un stockage cloud obligatoire.
+Quand on ouvre l'application Desktop, la première surface est le **lanceur de projets** : créer une session, importer un `.dw` existant ou restaurer un projet local. Une fois dans le Studio, ce même projet passe par le séquenceur, le piano roll, l'arrangeur, les instruments, les effets, l'automation et le mixeur jusqu'au rendu ou à l'export.
 
-La suite du modèle plateforme étend ce même projet à Android. La future version Android sera proposée sur abonnement et vise une compatibilité **100 % cross-device avec Desktop**.
+Le point important est que ces surfaces ne sont pas une collection de mini-outils indépendants. Elles travaillent sur la même session et le même modèle de projet.
 
-> **Un projet. Un format. Deux plateformes. Pas deux workflows séparés.**
+Une session DAWWW-CORE ressemble concrètement à ceci :
 
-## En un coup d'œil
+```text
+Créer / importer / restaurer
+          ↓
+Choisir un instrument
+          ↓
+Écrire un pattern dans le séquenceur
+          ↓
+Affiner les notes ou le comportement des steps
+          ↓
+Construire le morceau dans l'arrangeur
+          ↓
+Façonner instruments + effets + automation
+          ↓
+Router et équilibrer dans le mixeur
+          ↓
+Exporter l'audio / les stems
+          ↓
+Conserver ou déplacer le projet en .dw
+```
 
-| | DAWWW-CORE |
-| --- | --- |
-| **Desktop Web** | Disponible maintenant — **sans paiement** |
-| **Android** | **À venir** — sur abonnement |
-| **Objectif cross-device** | **100 % de continuité projet Desktop ↔ Android** |
-| **Format projet** | Sessions portables `.dw` |
-| **Philosophie stockage** | Local-first ; le cloud n'est pas obligatoire pour le contenu créatif |
-| **Workflow de production** | Séquenceur, piano roll, arrangeur, mixeur, instruments, effets, automation |
-| **Sorties** | Export audio, master et workflows de stems selon les capacités disponibles |
-| **Technologies principales** | TypeScript, React, Vite, Web Audio API, AudioWorklet, PWA |
-| **Code de production** | Privé — ce dépôt est la vitrine publique du produit |
+C'est le produit résumé en une phrase : **un workflow de production dans le navigateur où la session musicale reste un projet portable au lieu de devenir indissociable d'un compte hébergé.**
 
-## À l'intérieur du studio
+## Un workflow volontairement concret
 
-DAWWW-CORE n'est pas présenté ici comme une simple liste de fonctionnalités. L'interface actuelle expose déjà des surfaces dédiées pour écrire, éditer et mixer.
+Le Browser n'est pas seulement une liste de fichiers. Il expose les instruments disponibles dans le projet et les regroupe par rôle musical. Un instrument peut être amené dans le workflow d'écriture, programmé dans le séquenceur puis édité plus finement sans changer d'application ni de contexte projet.
+
+Le séquenceur va aussi plus loin qu'une simple grille on/off. Chaque step peut porter des comportements musicaux comme la **vélocité, la probabilité, la longueur de gate, le ratchet, l'articulation et le décalage de timing**. On peut donc introduire de la variation, casser la rigidité d'un pattern et travailler le détail rythmique avant même de passer au piano roll ou à l'arrangeur.
+
+Pour les éléments mélodiques, le **piano roll** fournit l'édition au niveau de la note. Pour le sound design, les instruments disposent de leurs propres éditeurs dédiés au lieu de forcer tous les sons dans un panneau générique identique. Electric Piano, drums, synthés, voix orchestrales et autres familles peuvent ainsi présenter des contrôles adaptés au son réellement édité.
+
+Une fois la matière écrite, le projet passe naturellement dans l'**arrangeur** pour la structure du morceau, puis dans le **mixeur** pour le routage, les niveaux, les traitements et le master. L'automation reste intégrée à cette même session, ce qui permet d'écrire les variations d'effets ou de paramètres directement dans le projet plutôt que de les reproduire manuellement à chaque lecture.
+
+## Plus qu'une coquille vide de DAW
+
+Un projet DAWWW-CORE neuf dispose déjà d'une palette sonore interne importante. Le registre intégré actuel contient **plus de 50 moteurs d'instruments**, auxquels s'ajoute un sampler, répartis notamment dans les familles suivantes :
+
+- **Drums** — kick, snare, hand clap, closed/open hi-hat, low/mid/high toms, cowbell, rimshot, claves et maracas.
+- **Basses** — sub bass, acid bass et Reese bass.
+- **Electronic** — mono lead, poly synth, pluck, arpeggio synth, chiptune, FM keys et noise/transition FX.
+- **Pads** — warm, glass, choir, evolving et ambient.
+- **Keys & bells** — acoustic piano, electric piano, clavinet, tonewheel organ, celesta, music box et tubular bell.
+- **Guitares** — nylon, steel-string, clean electric et driven electric.
+- **Orchestre** — moteurs dédiés pour cordes, cuivres et bois : violin, viola, cello, contrabass, trumpet, French horn, trombone, tuba, flute, oboe, clarinet et bassoon.
+
+Le but n'est pas de prétendre remplacer tous les plugins externes possibles. Le but est qu'**un nouveau projet puisse immédiatement devenir une vraie esquisse musicale ou une production complète sans exiger une collection de plugins séparée simplement pour commencer à faire du son.**
+
+La couche de traitement intégrée comporte actuellement **16 effets** : EQ paramétrique 8 bandes, compressor, convolution reverb, delay synchronisé au tempo, chorus, flanger, phaser, distortion, filter, gate, limiter, saturator, tremolo, vibrato, bitcrusher et utility.
+
+## À l'intérieur du Studio actuel
 
 <table>
   <tr>
     <td width="50%" valign="top">
       <img src="asset/capture/Screenshot_20260817-034101.png" alt="Séquenceur DAWWW-CORE" width="100%" /><br />
-      <sub><b>Séquenceur</b> — construire des patterns, organiser les pistes et passer rapidement d'une session vide à une idée structurée.</sub>
+      <sub><b>Séquenceur</b> — pistes, patterns et accès direct au browser d'instruments dans la même surface de production.</sub>
     </td>
     <td width="50%" valign="top">
-      <img src="asset/capture/Screenshot_20260817-034231.png" alt="Édition détaillée du séquenceur DAWWW-CORE" width="100%" /><br />
-      <sub><b>Édition détaillée des steps</b> — vélocité, probabilité, gate, ratchets, articulation et timing restent directement liés au pattern.</sub>
+      <img src="asset/capture/Screenshot_20260817-034231.png" alt="Éditeur détaillé des steps DAWWW-CORE" width="100%" /><br />
+      <sub><b>Détail du step</b> — vélocité, chance, gate, ratchets, articulation et timing peuvent être édités individuellement.</sub>
     </td>
   </tr>
   <tr>
     <td width="50%" valign="top">
       <img src="asset/capture/Screenshot_20260817-034213.png" alt="Mixeur DAWWW-CORE" width="100%" /><br />
-      <sub><b>Mixeur</b> — routage, niveaux, canaux et master restent dans le même environnement que la composition.</sub>
+      <sub><b>Mixeur</b> — canaux, routage, inserts, niveaux et master restent connectés au même projet.</sub>
     </td>
     <td width="50%" valign="top">
-      <img src="asset/capture/Screenshot_20260817-034141.png" alt="Piano roll et éditeur d'instrument DAWWW-CORE" width="100%" /><br />
-      <sub><b>Piano roll + éditeur d'instrument</b> — modifier les notes tout en gardant l'instrument et ses contrôles directement dans le contexte.</sub>
+      <img src="asset/capture/Screenshot_20260817-034141.png" alt="Piano roll et éditeur Hand Clap DAWWW-CORE" width="100%" /><br />
+      <sub><b>Piano roll + éditeur de device</b> — éditer les données musicales tout en gardant l'instrument lui-même directement accessible.</sub>
     </td>
   </tr>
   <tr>
     <td colspan="2" align="center" valign="top">
       <img src="asset/capture/Screenshot_20260817-034152.png" alt="Éditeur Electric Piano DAWWW-CORE" width="82%" /><br />
-      <sub><b>Instruments dédiés</b> — sound shaping, enveloppes, contrôles de jeu et interaction MIDI sans quitter le projet.</sub>
+      <sub><b>Interfaces d'instrument dédiées</b> — l'Electric Piano expose tone shaping, tremolo, enveloppe et contrôles MIDI au lieu d'un éditeur générique unique.</sub>
     </td>
   </tr>
 </table>
 
-## De l'idée à l'export final
+## `.dw` est au centre du produit
 
-DAWWW-CORE est pensé pour garder la création dans un flux continu plutôt que de disperser chaque étape entre plusieurs outils.
+Le format `.dw` n'est pas simplement une option d'export située à la fin de l'interface. C'est la représentation portable d'un projet DAWWW-CORE.
+
+L'application Desktop conserve la session de travail dans une logique local-first, mais un projet doit aussi pouvoir quitter le navigateur proprement. `.dw` fournit ce chemin : **le sauvegarder, le déplacer, l'archiver, le réimporter ou le restaurer sur une autre surface DAWWW-CORE compatible.**
+
+C'est important parce que beaucoup d'applications web font d'une base distante l'unique copie faisant autorité sur un projet. DAWWW-CORE choisit volontairement de ne pas faire de cela le contrat créatif du produit.
+
+Le modèle est plutôt :
 
 ```text
-Créer / importer un projet
-          ↓
-Patterns & séquenceur
-          ↓
-Piano roll / édition des notes
-          ↓
-Arrangeur & timeline
-          ↓
-Instruments intégrés + effets
-          ↓
-Automation
-          ↓
-Mixeur & routage
-          ↓
-Master / stems / export audio
-          ↓
+Projet de travail local
+        +
 Projet portable .dw
+        =
+Une session qui n'a pas besoin d'un stockage cloud obligatoire pour exister
 ```
 
-Commencez par un pattern. Affinez les notes dans le piano roll. Développez la structure dans l'arrangeur. Façonnez les sons, automatisez des paramètres, routez les canaux, construisez le mix et préparez l'export sans changer de modèle de projet en cours de route.
+Des comptes et services en ligne peuvent exister autour de l'application, mais le projet créatif n'est pas conçu pour devenir un objet appartenant techniquement au serveur simplement parce que la station tourne dans un navigateur.
 
-## Ce que le studio rassemble
+## Desktop maintenant · Android ensuite
 
-### Séquenceur
+### Desktop — disponible maintenant, sans paiement
 
-Construisez des patterns rythmiques et mélodiques, organisez les pistes et travaillez avec des comportements musicaux détaillés par step plutôt qu'avec une simple grille on/off.
+La version Desktop Web est aujourd'hui la surface principale de DAWWW-CORE. Elle est conçue pour les écrans larges et les contrôles denses nécessaires au séquenceur, au piano roll, à l'arrangeur, aux éditeurs de devices et au mixeur.
 
-### Piano roll
+Il n'y a **aucun parcours de paiement sur Desktop**. Le Studio peut être ouvert directement depuis le web, et l'architecture orientée PWA permet au navigateur de se rapprocher d'un comportement d'application installée lorsque la plateforme le permet.
 
-Éditez les notes dans une surface dédiée à l'écriture musicale. Timing, durée, structure et précision restent reliés au même projet et au même contexte d'instrument.
+[**Lancer le Studio Desktop →**](https://dawww-core-local.com/app)
 
-### Arrangeur
+### Android — à venir sur abonnement, avec le même projet
 
-Passez d'un pattern à une structure complète. L'arrangeur apporte la timeline nécessaire pour organiser sections, répétitions, transitions et progression du morceau.
+La version Android n'est pas prévue comme un jouet mobile séparé ni comme une application compagnon en lecture seule. Elle est développée comme le prolongement mobile du même workflow DAWWW-CORE.
 
-### Mixeur
-
-Travaillez niveaux, routage et traitements sans quitter le projet. Le mix fait partie du workflow, il n'est pas un écran isolé ajouté à la fin.
-
-### Instruments intégrés
-
-DAWWW-CORE propose des instruments et éditeurs dédiés afin qu'un nouveau projet puisse devenir immédiatement jouable sans imposer une collection de plugins externes pour commencer.
-
-### Effets & automation
-
-Les traitements et mouvements de paramètres utilisent le même modèle de production. Filtres, dynamique, transitions et textures évolutives peuvent être écrits dans le projet au lieu d'être reproduits manuellement à chaque lecture.
-
-### Export
-
-Une session n'a de valeur que si elle peut sortir du studio. DAWWW-CORE prend en charge le rendu audio avec des workflows orientés master et stems selon les capacités de la plateforme.
-
-## `.dw` : votre projet est un fichier
-
-Le format `.dw` est l'une des décisions produit centrales de DAWWW-CORE.
-
-Un projet web ne devrait pas être prisonnier d'un onglet ni dépendre définitivement d'une base distante. `.dw` est conçu comme **le contenant portable d'une session DAWWW-CORE** : le sauvegarder, le déplacer, le restaurer et le transporter entre surfaces compatibles.
-
-Cette portabilité sert deux objectifs :
-
-- préserver une vraie sortie locale pour le travail créatif ;
-- fournir le contrat commun nécessaire à la continuité Desktop ↔ Android.
-
-Les services cloud peuvent être utiles autour du produit. Ils n'ont pas à devenir le propriétaire technique de la musique elle-même.
-
-## Local-first par conception
-
-DAWWW-CORE part d'un principe volontairement différent d'une station cloud-first : **le contenu créatif existe d'abord sur l'appareil de l'utilisateur**.
-
-Le cœur du workflow est donc pensé autour du stockage local, de la portabilité et de la récupération des projets. Des services réseau peuvent exister autour du produit, mais ils ne constituent pas la source primaire de la session musicale.
-
-Concrètement, l'objectif est simple : moins de dépendances réseau inutiles, des chemins de récupération compréhensibles, des projets transportables et davantage de contrôle direct sur le travail créé.
-
-## Desktop aujourd'hui · Android ensuite
-
-### Desktop Web — disponible maintenant, sans paiement
-
-Desktop est aujourd'hui la surface principale de DAWWW-CORE. Elle est conçue pour les grands écrans, les contrôles denses et les sessions prolongées entre séquenceur, piano roll, arrangeur et mixeur.
-
-**Il n'y a pas de parcours de paiement sur la version Desktop.** Le studio navigateur est le point d'entrée direct du produit.
-
-[**Lancer DAWWW-CORE Desktop →**](https://dawww-core-local.com/app)
-
-### Android — à venir sur abonnement
-
-Android n'est pas conçu comme un produit séparé ni comme un simple lecteur compagnon. La future version est pensée comme **le prolongement mobile du même projet DAWWW-CORE**.
-
-Elle sera proposée **sur abonnement** et construite autour d'une compatibilité `.dw` complète avec Desktop :
+Android sera proposé **sur abonnement**, avec comme cible produit une **compatibilité projet Desktop ↔ Android à 100 %**. Le même contrat `.dw` sert de base à cette continuité :
 
 ```text
-Desktop
-   ↓
-projet .dw
-   ↓
-Android
-   ↓
-même projet .dw
-   ↓
-Desktop
+Projet Desktop
+      ↓
+     .dw
+      ↓
+Projet Android
+      ↓
+     .dw
+      ↓
+Retour sur Desktop
 ```
 
-L'objectif produit est une continuité **100 % cross-device** tout en conservant l'approche local-first. Cross-device ne signifie pas cloud obligatoire ; le projet portable reste le contrat commun entre les plateformes.
+Le cross-device ne signifie donc pas qu'un projet doit obligatoirement être envoyé dans un cloud avant de pouvoir changer d'appareil. Le projet portable reste une partie du design.
 
-## Pourquoi construire un DAW pour le web ?
+## Pourquoi mettre autant d'un DAW dans un navigateur ?
 
-Parce qu'un navigateur moderne est une plateforme applicative, pas seulement une surface de contenu.
+Parce que le navigateur apporte à DAWWW-CORE deux choses à la fois : **un accès immédiat** et un runtime applicatif moderne.
 
-DAWWW-CORE utilise **Web Audio API** et **AudioWorklet** pour le traitement audio temps réel, tandis que TypeScript, React et Vite construisent la couche applicative autour du moteur et de l'interface de production.
+La couche audio utilise **Web Audio API** et **AudioWorklet** pour le traitement temps réel, tandis que TypeScript, React et Vite construisent la couche applicative et l'interface autour du moteur. Le stockage local navigateur et le pipeline `.dw` prennent en charge la persistance et la portabilité du projet. Le support PWA rapproche le modèle de distribution d'une application Desktop installée sans imposer un installeur traditionnel comme unique point d'entrée.
 
-L'objectif n'est pas de reproduire pixel par pixel une station traditionnelle. Il est de préserver ce qui compte dans une production sérieuse — contrôle, continuité, précision, vitesse et portabilité — tout en utilisant le web pour l'accès immédiat et la distribution.
+L'objectif n'est pas de faire « un DAW en JavaScript » comme démonstration technique. L'objectif est d'utiliser le web là où il est réellement utile — distribution, accès, portabilité et mises à jour rapides — sans abandonner les structures attendues d'un outil de production.
+
+## Ce que DAWWW-CORE ne prétend pas être aujourd'hui
+
+La direction produit actuelle est volontairement cadrée. DAWWW-CORE n'est **pas aujourd'hui construit autour** d'une synchronisation cloud obligatoire des projets, de collaboration temps réel, d'iOS ou d'une marketplace de plugins.
+
+Ces absences font partie du scope public, ce ne sont pas des fonctions volontairement cachées derrière cette vitrine. La priorité reste la station elle-même : playback, écriture, instruments, effets, automation, mixage, récupération du projet, portabilité `.dw` et export.
 
 ## Stack publique
 
 `TypeScript` · `React` · `Vite` · `Web Audio API` · `AudioWorklet` · `PWA` · stockage local navigateur
 
-Le produit contient également des couches dédiées à la QA, à la compatibilité projet, à la récupération, à l'observabilité et à la distribution. Les détails sensibles restent privés.
+Le code de production contient également des outils dédiés à la QA, à la récupération des projets, à la compatibilité, à l'observabilité et à la release. Cette implémentation reste privée ; ce dépôt présente le produit sans exposer les éléments opérationnels ou sensibles pour la sécurité.
 
-## Fiabilité avant chiffres vitrine
+## Modèle plateforme actuel
 
-Un DAW ne se juge pas uniquement sur des captures. Une belle interface ne compense pas une lecture instable, une restauration fragile ou un export peu fiable.
-
-Le développement se concentre donc fortement sur les chemins critiques : transport, playback, persistance projet, portabilité `.dw`, restauration, routage, export et comportement plateforme.
-
-Ce dépôt public présente le produit sans transformer les validations QA privées en promesses marketing gonflées.
-
-## État du projet
-
-**DAWWW-CORE Desktop** est activement développé et disponible maintenant **sans paiement**.
-
-**DAWWW-CORE Android** est **à venir**, prévu comme produit **sur abonnement**, avec la continuité **100 % cross-device** avec Desktop comme objectif central.
-
-Les interfaces, fonctionnalités et compatibilités peuvent évoluer avec le développement. Les pages publiques du produit restent la référence pour les informations destinées aux utilisateurs.
+| Surface | Statut | Modèle d'accès | Modèle projet |
+| --- | --- | --- | --- |
+| **Desktop Web** | **Disponible maintenant** | **Sans paiement** | Local-first + `.dw` portable |
+| **Android** | **À venir** | **Abonnement** | Même contrat `.dw`, objectif 100 % cross-device |
+| **Sync cloud** | Non obligatoire | — | L'existence du projet n'en dépend pas |
+| **Code de production** | Privé | — | Ce dépôt est la vitrine publique |
 
 ## Ressources
 
-- **Site** — https://dawww-core-local.com/fr
 - **Studio Desktop** — https://dawww-core-local.com/app
 - **Présentation produit** — https://dawww-core-local.com/fr/studio
-- **Guides** — https://dawww-core-local.com/fr/docs
+- **Documentation** — https://dawww-core-local.com/fr/docs
 - **Tutoriels** — https://dawww-core-local.com/fr/tutorials
 - **FAQ** — https://dawww-core-local.com/fr/faq
 - **Statut** — https://dawww-core-local.com/fr/status
@@ -236,19 +210,17 @@ Les interfaces, fonctionnalités et compatibilités peuvent évoluer avec le dé
 
 ## À propos de ce dépôt
 
-`Daw-core-desktop` est la **vitrine GitHub publique de DAWWW-CORE**.
+`Daw-core-desktop` est la **vitrine produit publique de DAWWW-CORE**.
 
-L'application de production et le moteur audio restent privés. Ce dépôt sert à présenter le produit, son workflow, ses surfaces publiques et sa direction plateforme ; il ne constitue **pas** une distribution open source du code de production.
+L'application de production et le moteur audio sont développés dans un codebase privé. Ce dépôt existe pour rendre le produit compréhensible depuis l'extérieur : ce qu'il fait, comment se déroule une session, ce qui est disponible aujourd'hui et où la plateforme va ensuite.
 
-Les secrets, configurations de déploiement, contrats fournisseurs, mécanismes de sécurité et autres éléments internes sensibles sont volontairement conservés hors de ce dépôt.
+Il ne s'agit **pas** d'une distribution open source du moteur de production. Les configurations de déploiement, artefacts QA privés, contrats fournisseurs, mécanismes de sécurité et autres détails internes sensibles restent hors de ce dépôt.
 
 ---
 
 <div align="center">
 
-### Ouvrez le studio. Gardez le projet.
-
-**DAWWW-CORE — une production musicale sérieuse sur le web, avec un projet qui reste sous votre contrôle.**
+### Créez localement. Travaillez comme dans un DAW. Gardez le projet.
 
 [**Ouvrir DAWWW-CORE Desktop**](https://dawww-core-local.com/app)
 
